@@ -34,6 +34,9 @@ namespace Paval_Georgiana_Lab2.Controllers
             }
 
             var book = await _context.Books
+                .Include(s => s.Orders)
+                .ThenInclude(e => e.Customer)
+                .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (book == null)
             {
