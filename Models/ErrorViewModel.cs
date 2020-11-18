@@ -1,6 +1,6 @@
 using System;
 
-namespace Paval_Georgiana_Lab2.Models
+namespace LibraryModel.Models
 {
     public class ErrorViewModel
     {

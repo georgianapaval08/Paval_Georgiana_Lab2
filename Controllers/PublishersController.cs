@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Paval_Georgiana_Lab2.Data;
-using Paval_Georgiana_Lab2.Models;
-using Paval_Georgiana_Lab2.Models.LibraryViewModels;
+using LibraryModel.Data;
+using LibraryModel.Models;
+using LibraryModel.Models.LibraryViewModels;
 
 namespace Paval_Georgiana_Lab2.Controllers
 {
@@ -35,7 +35,7 @@ namespace Paval_Georgiana_Lab2.Controllers
             if (id != null)
             {
                 ViewData["PublisherID"] = id.Value;
-                Publisher publisher = viewModel.Publishers.Where(
+                Publishers publisher = viewModel.Publishers.Where(
                 i => i.ID == id.Value).Single();
                 viewModel.Books = publisher.PublishedBooks.Select(s => s.Book);
             }
@@ -77,7 +77,7 @@ namespace Paval_Georgiana_Lab2.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,PublisherName,Adress")] Publisher publisher)
+        public async Task<IActionResult> Create([Bind("ID,PublisherName,Adress")] Publishers publisher)
         {
             if (ModelState.IsValid)
             {
@@ -107,7 +107,7 @@ namespace Paval_Georgiana_Lab2.Controllers
             return View(publisher);
 
         }
-        private void PopulatePublishedBookData(Publisher publisher)
+        private void PopulatePublishedBookData(Publishers publisher)
         {
             var allBooks = _context.Books;
             var publisherBooks = new HashSet<int>(publisher.PublishedBooks.Select(c => c.BookID));
@@ -139,7 +139,7 @@ namespace Paval_Georgiana_Lab2.Controllers
             .Include(i => i.PublishedBooks)
             .ThenInclude(i => i.Book)
             .FirstOrDefaultAsync(m => m.ID == id);
-            if (await TryUpdateModelAsync<Publisher>(
+            if (await TryUpdateModelAsync<Publishers>(
             publisherToUpdate,
             "",
             i => i.PublisherName, i => i.Adress))
@@ -161,7 +161,7 @@ namespace Paval_Georgiana_Lab2.Controllers
             PopulatePublishedBookData(publisherToUpdate);
             return View(publisherToUpdate);
         }
-        private void UpdatePublishedBooks(string[] selectedBooks, Publisher publisherToUpdate)
+        private void UpdatePublishedBooks(string[] selectedBooks, Publishers publisherToUpdate)
         {
             if (selectedBooks == null)
             {

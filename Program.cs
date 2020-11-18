@@ -1,5 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
-using Paval_Georgiana_Lab2.Data;
+using LibraryModel.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;

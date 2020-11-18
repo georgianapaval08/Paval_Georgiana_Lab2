@@ -1,11 +1,11 @@
-﻿using Paval_Georgiana_Lab2.Models;
+﻿using LibraryModel.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
-namespace Paval_Georgiana_Lab2.Data
+namespace LibraryModel.Data
 {
     public class DbInitializer
     {
@@ -56,14 +56,14 @@ namespace Paval_Georgiana_Lab2.Data
                 context.Orders.Add(e);
             }
             context.SaveChanges();
-            var publishers = new Publisher[]
+            var publishers = new Publishers[]
             {
 
- new Publisher{PublisherName="Humanitas",Adress="Str. Aviatorilor, nr. 40, Bucuresti"},
- new Publisher{PublisherName="Nemira",Adress="Str. Plopilor, nr. 35, Ploiesti"},
- new Publisher{PublisherName="Paralela 45",Adress="Str. Cascadelor, nr. 22, Cluj-Napoca"},
+ new Publishers{PublisherName="Humanitas",Adress="Str. Aviatorilor, nr. 40, Bucuresti"},
+ new Publishers{PublisherName="Nemira",Adress="Str. Plopilor, nr. 35, Ploiesti"},
+ new Publishers{PublisherName="Paralela 45",Adress="Str. Cascadelor, nr. 22, Cluj-Napoca"},
             };
-            foreach (Publisher p in publishers)
+            foreach (Publishers p in publishers)
             {
                 context.Publishers.Add(p);
             }

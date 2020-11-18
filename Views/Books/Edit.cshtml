@@ -1,4 +1,4 @@
-﻿@model Paval_Georgiana_Lab2.Models.Book
+﻿@model LibraryModel.Models.Book
 
 @{
     ViewData["Title"] = "Edit";
@@ -35,7 +35,7 @@
                             @{
                                 int cnt = 0;
 
-                                List<Paval_Georgiana_Lab2.Models.LibraryViewModels.PublishedBookData> books =
+                                List<LibraryModel.Models.LibraryViewModels.PublishedBookData> books =
                                 ViewBag.Books;
                                 foreach (var book in books)
                                 {
